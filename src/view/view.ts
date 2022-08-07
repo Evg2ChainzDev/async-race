@@ -51,8 +51,16 @@ export const drawGarage = async function () {
                                </svg>   `;
         carsContainer.append(appendedCar);
     });
-    // const selectCarDiv = document.querySelector(`[data-ids = ${selectedCar}]`);
-    // console.log(selectCarDiv);
+    // console.log(selectedCar);
+    const selectCarDiv = document.querySelector(`[data-car-id = "${selectedCar}"]`) as HTMLElement;
+    selectCarDiv?.classList.add('selected');
+    console.log(selectCarDiv);
+
+    if (selectCarDiv !== null) {
+        const selectedCarName = (selectCarDiv.querySelector('.car-name') as HTMLElement).innerText;
+        const updateCarName = document.querySelector('#updateCarName') as HTMLInputElement;
+        updateCarName.value = selectedCarName;
+    }
 
     // draw garage arrows
     const paginationContainer = document.createElement('div');
