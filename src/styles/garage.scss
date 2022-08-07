@@ -11,6 +11,18 @@
   cursor: pointer;
 }
 
+.update-section {
+  display: flex;
+  align-items: center;
+}
+
 .remove-car-btn {
   cursor: pointer;
 }
+
+.garage-pagination-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+
