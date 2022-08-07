@@ -4,10 +4,8 @@ import { getDataAllCars } from './getDataCars';
 export const addListenersToGarageMenu = function (): void {
     const createCarBtn = document.querySelector('.create-car-btn') as HTMLElement;
     createCarBtn.addEventListener('click', async () => {
-        console.log('add car click');
         const newCarName = (document.querySelector('#createCarName') as HTMLInputElement).value || 'New Car';
         const newCarColor = (document.querySelector('#createCarColor') as HTMLInputElement).value;
-        console.log(newCarName, newCarColor);
         const car = { name: newCarName, color: newCarColor };
 
         const postNewCar = async function () {
@@ -20,7 +18,33 @@ export const addListenersToGarageMenu = function (): void {
             });
         };
         await postNewCar(); // перед любой асинхронной функцией могу ставить евеит если надо
-        // console.log('click2');
+
+        drawGarage();
+    });
+
+    const updateCarBtn = document.querySelector('.update-car-btn') as HTMLElement;
+    updateCarBtn.addEventListener('click', async () => {
+        console.log('update click');
+        if (sessionStorage.selectedCarId == '') {
+            return;
+        }
+        const updateCarName = (document.querySelector('#updateCarName') as HTMLInputElement).value;
+        const updateCarColor = (document.querySelector('#updateCarColor') as HTMLInputElement).value;
+        const car = { name: updateCarName, color: updateCarColor };
+
+
+        const updateSelectedCar = async function () {
+            const selectedCarId = sessionStorage.getItem('selectedCarId');
+            console.log(selectedCarId);
+            await fetch(`http://127.0.0.1:3000/garage/${selectedCarId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(car),
+            });
+        };
+        await updateSelectedCar();
         drawGarage();
     });
 };
@@ -33,7 +57,6 @@ export const addListenersToCarMenu = function (): void {
         switch (clickedClass) {
             case 'remove-car-btn': {
                 const dataCarId = target.parentElement?.dataset.carId;
-                // console.log(dataCarId);
                 await fetch(`http://127.0.0.1:3000/garage/${dataCarId}`, {
                     method: 'DELETE',
                 });
@@ -43,12 +66,11 @@ export const addListenersToCarMenu = function (): void {
                 console.log('this btn select');
                 const dataCarId = target.parentElement?.dataset.carId;
                 console.log(dataCarId);
-                if (dataCarId == sessionStorage.selectedCar) {
-                    sessionStorage.selectedCar = '';
-                } else { 
-                    sessionStorage.selectedCar = dataCarId;
+                if (dataCarId == sessionStorage.selectedCarId) {
+                    sessionStorage.selectedCarId = '';
+                } else {
+                    sessionStorage.selectedCarId = dataCarId;
                 }
-                
             }
         }
         drawGarage();

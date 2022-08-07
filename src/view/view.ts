@@ -19,7 +19,7 @@ export const drawGarage = async function () {
     const dataCar = await getDataCars();
     const dataAllCar = await getDataAllCars();
     const garagePage = sessionStorage.getItem('garagePage');
-    const selectedCar = sessionStorage.getItem('selectedCar');
+    const selectedCarId = sessionStorage.getItem('selectedCarId');
 
     const main = document.querySelector('main') as HTMLElement;
 
@@ -38,6 +38,10 @@ export const drawGarage = async function () {
                       </div>
                       <div class="cars-container"><span>Garage (${dataAllCar.length}) </span><span>Page № ${garagePage}</span></div>`;
     const carsContainer = document.querySelector('.cars-container') as HTMLElement;
+    if (selectedCarId !== (null || '')) {
+        const inputUpdateCarName = document.querySelector('#updateCarName') as HTMLInputElement;
+        inputUpdateCarName.removeAttribute('disabled');
+    }
 
     // draw cars list
     dataCar.forEach((el) => {
@@ -52,7 +56,7 @@ export const drawGarage = async function () {
         carsContainer.append(appendedCar);
     });
     // console.log(selectedCar);
-    const selectCarDiv = document.querySelector(`[data-car-id = "${selectedCar}"]`) as HTMLElement;
+    const selectCarDiv = document.querySelector(`[data-car-id = "${selectedCarId}"]`) as HTMLElement;
     selectCarDiv?.classList.add('selected');
     console.log(selectCarDiv);
 
