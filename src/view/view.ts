@@ -35,6 +35,9 @@ export const drawGarage = async function () {
                           <input type="color" id="updateCarColor" value="#e66465">
                           <button class="update-car-btn">update car</button>
                         </div>
+                        <div class="rrg-section">
+                          <button class="generate-cars-btn">generate cars</button>
+                        </div>
                       </div>
                       <div class="cars-container"><span>Garage (${dataAllCar.length}) </span><span>Page № ${garagePage}</span></div>`;
     const carsContainer = document.querySelector('.cars-container') as HTMLElement;

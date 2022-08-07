@@ -1,5 +1,6 @@
 import { drawGarage } from '../view/view';
 import { getDataAllCars } from './getDataCars';
+import { generateRandom100Cars } from './generateRandom100Cars';
 
 export const addListenersToGarageMenu = function (): void {
     const createCarBtn = document.querySelector('.create-car-btn') as HTMLElement;
@@ -32,7 +33,6 @@ export const addListenersToGarageMenu = function (): void {
         const updateCarColor = (document.querySelector('#updateCarColor') as HTMLInputElement).value;
         const car = { name: updateCarName, color: updateCarColor };
 
-
         const updateSelectedCar = async function () {
             const selectedCarId = sessionStorage.getItem('selectedCarId');
             console.log(selectedCarId);
@@ -46,6 +46,12 @@ export const addListenersToGarageMenu = function (): void {
         };
         await updateSelectedCar();
         drawGarage();
+    });
+
+    const generateCarsBtn = document.querySelector('.generate-cars-btn') as HTMLElement;
+    generateCarsBtn.addEventListener('click', async () => {
+        // console.log('generate btn');
+        generateRandom100Cars();
     });
 };
 
