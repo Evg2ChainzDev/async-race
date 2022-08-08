@@ -88,7 +88,7 @@ export const addListenersToGarageArrows = function (): void {
     garagePageContainer.addEventListener('click', async (ev) => {
         const target = ev.target as HTMLElement;
         let currPage = Number(sessionStorage.garagePage);
-        console.log(currPage);
+        // console.log(currPage);
         const clickedClass = target.className;
         switch (clickedClass) {
             case 'garage-left-btn': {

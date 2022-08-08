@@ -61,7 +61,7 @@ export const drawGarage = async function () {
     // console.log(selectedCar);
     const selectCarDiv = document.querySelector(`[data-car-id = "${selectedCarId}"]`) as HTMLElement;
     selectCarDiv?.classList.add('selected');
-    console.log(selectCarDiv);
+    // console.log(selectCarDiv);
 
     if (selectCarDiv !== null) {
         const selectedCarName = (selectCarDiv.querySelector('.car-name') as HTMLElement).innerText;
