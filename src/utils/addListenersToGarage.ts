@@ -50,7 +50,6 @@ export const addListenersToGarageMenu = function (): void {
 
     const generateCarsBtn = document.querySelector('.generate-cars-btn') as HTMLElement;
     generateCarsBtn.addEventListener('click', async () => {
-        // console.log('generate btn');
         generateRandom100Cars();
     });
 };
@@ -69,14 +68,26 @@ export const addListenersToCarMenu = function (): void {
                 break;
             }
             case 'select-car-btn': {
-                console.log('this btn select');
                 const dataCarId = target.parentElement?.dataset.carId;
-                console.log(dataCarId);
                 if (dataCarId == sessionStorage.selectedCarId) {
                     sessionStorage.selectedCarId = '';
                 } else {
                     sessionStorage.selectedCarId = dataCarId;
                 }
+                break;
+            }
+            case 'a-btn': {
+                console.log('this is a btn');
+                const dataCarId = (target.closest('.car-container') as HTMLElement).dataset.carId;
+                console.log(dataCarId);
+                const carStartedResponse = await fetch(`http://127.0.0.1:3000/engine?id=${dataCarId}&status=started`, {
+                    method: 'PATCH',
+                });
+                console.log(carStartedResponse);
+                const carResp = await carStartedResponse.json();
+                const speed = Math.round(carResp.distance / carResp.velocity);
+                console.log(speed);
+                
             }
         }
         drawGarage();

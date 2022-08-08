@@ -28,3 +28,17 @@
 .cars-container .selected .select-car-btn {
   background-color: rgb(155, 207, 142);
 }
+
+.ABsSVGcontainer {
+  display: flex;
+  align-items: center;
+}
+
+@keyframes carAnimation {
+  from {
+    left: 0%;
+  }
+  to {
+    left: calc(100% - 100px); 
+  }
+}

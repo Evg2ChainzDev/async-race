@@ -26,12 +26,12 @@ export const drawGarage = async function () {
     //draw garage menu
     main.innerHTML = `<div class="garage-menu">
                         <div class="create-section">
-                          <input type="text" id="createCarName" required minlength="4" maxlength="12" size="12">
+                          <input type="text" id="createCarName" required minlength="4" maxlength="18" size="18">
                           <input type="color" id="createCarColor" value="#e66465">
                           <button class="create-car-btn">create car</button>
                         </div>
                         <div class="update-section">
-                          <input type="text" id="updateCarName" minlength="4" maxlength="12" size="12" disabled>
+                          <input type="text" id="updateCarName" minlength="4" maxlength="18" size="18" disabled>
                           <input type="color" id="updateCarColor" value="#e66465">
                           <button class="update-car-btn">update car</button>
                         </div>
@@ -50,12 +50,15 @@ export const drawGarage = async function () {
     dataCar.forEach((el) => {
         const appendedCar = document.createElement('div');
         appendedCar.dataset.carId = `${el.id}`;
+        appendedCar.classList.add('car-container');
         appendedCar.innerHTML = `<button class="select-car-btn">select</button><button class="remove-car-btn">remove</button><span class="car-name">${el.name}</span>
-                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="60">
-                                  <g style="fill: ${el.color}">${svgPath}</g>      
+        <div class="ABsSVGcontainer">
+        <button class="a-btn">A</button><button class="b-btn">B</button>                         
+        <svg viewBox="0 0 512 512" width="60">
+                                  <g style="fill: ${el.color}">${svgPath}</g>
                                   
-                               </svg>   `;
+                               </svg>
+        </div>   `;
         carsContainer.append(appendedCar);
     });
     // console.log(selectedCar);
