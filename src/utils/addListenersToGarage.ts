@@ -1,6 +1,7 @@
 import { drawGarage } from '../view/view';
 import { getDataAllCars } from './getDataCars';
 import { generateRandom100Cars } from './generateRandom100Cars';
+import { removeCarBtnFunc, selectCarBtnFunc, ABtnFunc, BBtnFunc } from './CarMenuButtonsFunc';
 
 export const addListenersToGarageMenu = function (): void {
     const createCarBtn = document.querySelector('.create-car-btn') as HTMLElement;
@@ -61,36 +62,23 @@ export const addListenersToCarMenu = function (): void {
         const clickedClass = target.className;
         switch (clickedClass) {
             case 'remove-car-btn': {
-                const dataCarId = target.parentElement?.dataset.carId;
-                await fetch(`http://127.0.0.1:3000/garage/${dataCarId}`, {
-                    method: 'DELETE',
-                });
+                await removeCarBtnFunc(target);
+                drawGarage();
                 break;
             }
             case 'select-car-btn': {
-                const dataCarId = target.parentElement?.dataset.carId;
-                if (dataCarId == sessionStorage.selectedCarId) {
-                    sessionStorage.selectedCarId = '';
-                } else {
-                    sessionStorage.selectedCarId = dataCarId;
-                }
+                selectCarBtnFunc(target);
+                drawGarage();
                 break;
             }
             case 'a-btn': {
-                console.log('this is a btn');
-                const dataCarId = (target.closest('.car-container') as HTMLElement).dataset.carId;
-                console.log(dataCarId);
-                const carStartedResponse = await fetch(`http://127.0.0.1:3000/engine?id=${dataCarId}&status=started`, {
-                    method: 'PATCH',
-                });
-                console.log(carStartedResponse);
-                const carResp = await carStartedResponse.json();
-                const speed = Math.round(carResp.distance / carResp.velocity);
-                console.log(speed);
-                
+                ABtnFunc(target);
+                break;
+            }
+            case 'b-btn': {
+                BBtnFunc(target);
             }
         }
-        drawGarage();
     });
 };
 

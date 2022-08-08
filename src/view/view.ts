@@ -53,8 +53,8 @@ export const drawGarage = async function () {
         appendedCar.classList.add('car-container');
         appendedCar.innerHTML = `<button class="select-car-btn">select</button><button class="remove-car-btn">remove</button><span class="car-name">${el.name}</span>
         <div class="ABsSVGcontainer">
-        <button class="a-btn">A</button><button class="b-btn">B</button>                         
-        <svg viewBox="0 0 512 512" width="60">
+        <button class="a-btn">A</button><button class="b-btn" disabled>B</button>                         
+        <svg class="svgCar" viewBox="0 0 512 512" width="60">
                                   <g style="fill: ${el.color}">${svgPath}</g>
                                   
                                </svg>

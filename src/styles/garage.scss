@@ -34,6 +34,12 @@
   align-items: center;
 }
 
+.svgCar {
+  position: relative;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
 @keyframes carAnimation {
   from {
     left: 0%;
@@ -42,3 +48,4 @@
     left: calc(100% - 100px); 
   }
 }
+
