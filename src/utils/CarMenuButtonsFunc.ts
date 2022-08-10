@@ -21,21 +21,21 @@ export const ABtnFunc = async function (target: HTMLElement) {
     const BBtn = divCarContainer.querySelector('.b-btn') as HTMLElement;
     ABtn.setAttribute('disabled', '');
     BBtn.removeAttribute('disabled');
-    console.log(dataCarId);
+
     const carStartedResponse = await fetch(`http://127.0.0.1:3000/engine?id=${dataCarId}&status=started`, {
         method: 'PATCH',
     });
-    console.log(carStartedResponse);
+
     const carResp = await carStartedResponse.json();
     const time = Math.round(carResp.distance / carResp.velocity);
-    // console.log(time);
+
     const animatedSvg = divCarContainer.querySelector('svg') as SVGSVGElement;
     animatedSvg.style.animationName = 'carAnimation';
     animatedSvg.style.animationDuration = `${time.toString()}ms`;
     const engineResponse = await fetch(`http://127.0.0.1:3000/engine?id=${dataCarId}&status=drive`, {
         method: 'PATCH',
     });
-    // const engineResponseFinal = await engineResponse.json();
+
     if (!engineResponse.ok) { 
         console.log('car broken');
         animatedSvg.style.animationPlayState = 'paused';
