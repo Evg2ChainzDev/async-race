@@ -26,7 +26,7 @@ export const addListenersToGarageMenu = function (): void {
 
     const updateCarBtn = document.querySelector('.update-car-btn') as HTMLElement;
     updateCarBtn.addEventListener('click', async () => {
-        console.log('update click');
+
         if (sessionStorage.selectedCarId == '') {
             return;
         }
@@ -87,7 +87,6 @@ export const addListenersToGarageArrows = function (): void {
     garagePageContainer.addEventListener('click', async (ev) => {
         const target = ev.target as HTMLElement;
         let currPage = Number(sessionStorage.garagePage);
-        // console.log(currPage);
         const clickedClass = target.className;
         switch (clickedClass) {
             case 'garage-left-btn': {

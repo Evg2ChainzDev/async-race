@@ -2,7 +2,7 @@ import { generateRandomColor, generateRandomName } from './generateRandomCarSCol
 import { drawGarage } from '../view/view';
 
 export const generateRandom100Cars = async function () {
-    console.log('function generateRandom100Cars works');
+
     for (let i = 0; i < 100; i++) {
         const randomCarColor = generateRandomColor();
         const randomCarName = generateRandomName();
@@ -17,7 +17,6 @@ export const generateRandom100Cars = async function () {
                 body: JSON.stringify(car),
             });
 
-            // fetch возвращает промис
         };
         await postNewCar();
     }

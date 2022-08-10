@@ -61,10 +61,10 @@ export const drawGarage = async function () {
         </div>   `;
         carsContainer.append(appendedCar);
     });
-    // console.log(selectedCar);
+
     const selectCarDiv = document.querySelector(`[data-car-id = "${selectedCarId}"]`) as HTMLElement;
     selectCarDiv?.classList.add('selected');
-    // console.log(selectCarDiv);
+
 
     if (selectCarDiv !== null) {
         const selectedCarName = (selectCarDiv.querySelector('.car-name') as HTMLElement).innerText;
@@ -86,7 +86,6 @@ export const drawGarage = async function () {
 
 export const drawWinners = async function () {
     const dataWinners = await getWinnersCars();
-    console.log(dataWinners);
 
     const main = document.querySelector('main') as HTMLElement;
     main.innerHTML = `<div class="winners-container"></div>`;
